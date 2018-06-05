@@ -15,18 +15,16 @@ router.get('/login', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
+	var message = 'succes'
 	let check = false
 	for(let i = 0; i < users.length; i++){
-		if (req.body.login == users[i].name & req.body.pass == users[i].password) {
+		if (req.body.login == users[i].name && req.body.pass == users[i].password) {
 			check = true
+			break
+			res.send('this user already exist')
 		}
 	}
-	if (check == true ) {
-		console.log('succes')
-	} else if(check == false){
-		console.log('login or password incorrect')
-	}
-
+	res.send('you are logged in')
   res.render('login', {});
 });
 
@@ -49,11 +47,14 @@ router.post('/register', function(req, res, next) {
 		password:req.body.pass
 	})
 	}else if (check == true) {
-		console.log('Nickname already in use, try a different one')
+		res.send('Nickname already in use, try a different one')
 	}
 	console.log(users)
   res.render('register', {});
 });
 
+router.get('/main', function(req, res, next) {
+  res.render('main', {});
+});
 
 module.exports = router;
