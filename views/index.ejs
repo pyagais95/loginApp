@@ -1,3 +1,7 @@
 <%- include('head.ejs'); %>
-<h1>Start page</h1>
-<%- include('foot.ejs'); %>	
+
+<h1> This is main page </h1>
+<% if(message) { %>
+	<%= message %>
+<% } %>
+<%- include('foot.ejs'); %>
